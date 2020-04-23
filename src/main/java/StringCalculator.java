@@ -1,12 +1,37 @@
 public class StringCalculator {
+    /*
+    극단적으로 리팩토링을 진행한 이유?
+    소스코드를 읽을 때 이 메서드가 무슨 일을 하는 메서드인지
+    최대한 쉽게 파악할 수 있도록 하기 위함이다.
+
+    세부 구현은 모두 private 메서드로 분리해 일단 관심사에서 제외하고
+    add() 메서드가 무슨 일을 한느지에 대한 전체 흐름을 쉽게 파악할 수 있도록
+    하기 위함이다.
+
+    세부 구현에 집중하도록 하지 않고,
+    논리적인 로직을 쉽게 파악할 수 있도록 구현하는 것이 읽기 좋은 코드이다.
+     */
+
+
+//    add 메서드가 하는 일
     public int add(String text) {
-        // if - else if - else 형태를 사용하지 않고 if만을 이용해서 구현
-        if (text == null || text.isEmpty()) {
+//    1. text값이 비어있으면 0을 반환한다.
+        if (isBlank(text)) {
             return 0;
         }
+//    2. 비어 있지 않으면
+//    2-1)구분자로 분리한다.
+//    2-2)숫자로 변환한 다음
+//    2-3)이 숫자의 합을 구한다.
+        return sum(toInts(split(text)));
+    }
 
-        String[] values = text.split(",");
-        return sum(toInts(values));
+    private boolean isBlank(String text) {
+        return text == null || text.isEmpty();
+    }
+
+    private String[] split(String text) {
+        return text.split(",");
     }
 
     private int[] toInts(String[] values) {
