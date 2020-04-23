@@ -18,4 +18,10 @@ public class StringCalculatorTest {
         assertEquals(0, cal.add(""));
 
     }
+
+    // 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.
+    @Test
+    public void add_숫자하나() throws  Exception {
+        assertEquals(1, cal.add("1"));
+    }
 }
