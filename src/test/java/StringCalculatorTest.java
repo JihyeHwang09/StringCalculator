@@ -40,4 +40,8 @@ public class StringCalculatorTest {
         assertEquals(6, cal.add("//;\n1;2;3"));
     }
 
+    @Test(expected = RuntimeException.class)
+    public void add_negative() throws Exception {
+        cal.add("-1,2,3");
+    }
 }
